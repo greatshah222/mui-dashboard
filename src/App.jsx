@@ -1,34 +1,38 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import { CssBaseline, ThemeProvider } from "@mui/material";
+import { Routes } from "react-router-dom";
+import Dashboard from "./pages/Dashboard";
+import TopBar from "./pages/global/TopBar";
+import { ColorModeContext, useMode } from "./theme";
+import SideBar from "./pages/global/Sidebar";
+import { ProSidebarProvider } from "react-pro-sidebar";
 
 function App() {
-  const [count, setCount] = useState(0)
+    const [theme, colorMode] = useMode();
 
-  return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src="/vite.svg" className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://reactjs.org" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
-  )
+    return (
+        <ColorModeContext.Provider value={colorMode}>
+            <ThemeProvider theme={theme}>
+                <CssBaseline />
+                <div className="app">
+                    <SideBar />
+                    <main className="content">
+                        <TopBar />
+                        <Routes path="/" element={<Dashboard />} />
+                        {/* <Routes path="/team" element={<Team />} /> */}
+                        {/* <Routes path="/contacts" element={<Contacts />} /> */}
+                        {/* <Routes path="/invoices" element={<Invoices />} /> */}
+                        {/* <Routes path="/form" element={<Form />} /> */}
+                        {/* <Routes path="/bar" element={<Bar />} /> */}
+                        {/* <Routes path="/pie" element={<Pie />} /> */}
+                        {/* <Routes path="/line" element={<Line />} /> */}
+                        {/* <Routes path="/faq" element={<FAQ />} /> */}
+                        {/* <Routes path="/geography" element={<Geography />} /> */}
+                        {/* <Routes path="/calendar" element={<Calendar />} /> */}
+                    </main>
+                </div>
+            </ThemeProvider>
+        </ColorModeContext.Provider>
+    );
 }
 
-export default App
+export default App;
