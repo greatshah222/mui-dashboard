@@ -17,7 +17,13 @@ const TopBar = () => {
         <Box display="flex" justifyContent={"space-between"} p={2}>
             {/* SEARCH BAR */}
 
-            <Box display={"flex"} borderRadius="3px">
+            <Box
+                display={"flex"}
+                borderRadius="3px"
+                style={{
+                    background: `${colors.primary[400]}`,
+                }}
+            >
                 <InputBase
                     sx={{
                         ml: 2,
